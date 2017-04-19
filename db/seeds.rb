@@ -19,3 +19,9 @@ create_jobs = for i in 1..10 do
   Job.create!([title: "Job no.#{i+10}", description: "這是用種子建立的第 #{i+10} 個Hidden工作", wage_upper_bound: rand(50..99)*100, wage_lower_bound: rand(10..49)*100,is_hidden: "true"])
 end
 puts "10 Hidden jobs created."
+
+def seed_image(file_name)
+  File.open(File.join(Rails.root, "/app/assets/images/eagle-1.jpg"))
+end
+
+Product.create([title:"fly",description:"fly",quantity:200,price:10,image:seed_image('fly')])
