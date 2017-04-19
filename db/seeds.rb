@@ -23,5 +23,3 @@ puts "10 Hidden jobs created."
 def seed_image(file_name)
   File.open(File.join(Rails.root, "/app/assets/images/eagle-1.jpg"))
 end
-
-Product.create([title:"fly",description:"fly",quantity:200,price:10,image:seed_image('fly')])
