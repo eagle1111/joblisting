@@ -3,6 +3,7 @@ class JobsController < ApplicationController
 
   def show
     @job=Job.find(params[:id])
+
   end
   def index
     @jobs = case params[:order]
@@ -13,6 +14,7 @@ class JobsController < ApplicationController
             else
               Job.published.recent
             end
+    @jobs = Job.paginate(:page => params[:page], :per_page => 10)
   end
   def new
     @job=Job.new
