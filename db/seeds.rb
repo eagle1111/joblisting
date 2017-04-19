@@ -5,12 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-u=User.new
-u.email="2@sina.cn"
-u.password="111111"
-u.password_confirmation="111111"
-u.is_admin=true
-u.save
-def seed_image(file_name)
-  File.open(File.join(Rails.root, "/app/assets/images/#{file_name}.jpg"))
+puts "這個種子檔會自動建立一個admin帳號, 並且創建 10 個 public jobs, 以及10個hidden jobs"
+
+create_account = User.create([email: '2@sina.cn', password: '111111', password_confirmation: '111111', is_admin: 'true'])
+puts "Admin account created."
+
+create_jobs = for i in 1..10 do
+  Job.create!([title: "Job no.#{i}", description: "這是用種子建立的第 #{i} 個Public工作", wage_upper_bound: rand(50..99)*100, wage_lower_bound: rand(10..49)*100, is_hidden: "false"])
 end
+puts "10 Public jobs created."
+
+create_jobs = for i in 1..10 do
+  Job.create!([title: "Job no.#{i+10}", description: "這是用種子建立的第 #{i+10} 個Hidden工作", wage_upper_bound: rand(50..99)*100, wage_lower_bound: rand(10..49)*100,is_hidden: "true"])
+end
+puts "10 Hidden jobs created."
