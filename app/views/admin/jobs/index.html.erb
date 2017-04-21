@@ -29,7 +29,7 @@
 
         <td>
             <%= render_job_status(job) %>
-            
+
             <%= link_to(job.title, admin_job_path(job)) %>
         </td>
         <td> <%= link_to(job.resumes.count, admin_job_resumes_path(job)) %> </td>
@@ -56,5 +56,5 @@
 </table>
 
 <div class="text-center">
-  <%= will_paginate @jobs %>
+  <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
 </div>
