@@ -24,29 +24,35 @@
  .navbar-default {
      background-color: #455A64;
      border-color: #455A64;
+
+
      margin-bottom: 0;
      border-radius: 0;
  }
 
  .navbar-default .navbar-brand {
      color: #FFAB00;
-     padding: 10px 15px;
+     padding: 15px 20px;
      line-height: 30px;
+     font-size: 25px;
  }
 
  .navbar-default .navbar-brand:hover,
  .navbar-default .navbar-brand:focus {
      color: #FFAB00;
+
      background-color: transparent;
  }
 
  .navbar-default .navbar-nav > li > a {
      color: #FFAB00;
+
  }
 
  .navbar-default .navbar-nav > li > a:hover,
  .navbar-default .navbar-nav > li > a:focus {
      color: #FFAB00;
+
      background-color: transparent;
  }
 
@@ -54,6 +60,7 @@
  .navbar-default .navbar-nav > .active > a:hover,
  .navbar-default .navbar-nav > .active > a:focus {
      color: #FFAB00;
+
      background-color: #FFE0B2;
  }
 
@@ -61,6 +68,8 @@
  .navbar-default .navbar-nav > .open > a:focus,
  .navbar-default .navbar-nav > .open > a:hover {
      background-color: #FFE0B2;
+     padding: 15px 20px;
+     font-size: 25px;
      color: #FFAB00;
  }
 
@@ -284,3 +293,16 @@
   .login-help{
     font-size: 12px;
   }
+
+  //---------serach box----------
+  .form-group {
+      margin-bottom: 10px;
+      margin-top: 10px;
+  }
+
+  .search-error{
+     text-align: center;
+     min-height: 325px;
+     margin-top: 250px;
+     margin-bottom: 50px;
+   }
