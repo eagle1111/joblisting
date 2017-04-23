@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :join, :quit]
   before_action :validate_search_key, only: [:search]
   def show
     @job=Job.find(params[:id])
@@ -43,6 +43,29 @@ class JobsController < ApplicationController
     @job.destroy
     redirect_to jobs_path
   end
+  def join
+ @job = Job.find(params[:id])
+
+  if !current_user.is_member_of?(@job)
+    current_user.join!(@job)
+    flash[:notice] = "收藏成功！"
+
+  end
+
+  redirect_to jobs_path(@job)
+end
+
+def quit
+  @job = Job.find(params[:id])
+
+  if current_user.is_member_of?(@job)
+    current_user.quit!(@job)
+    flash[:alert] = "取消收藏！"
+
+  end
+
+  redirect_to jobs_path(@job)
+end
   def search
     if @query_string.present?
       search_result = Job.ransack(@search_criteria).result(:distinct => true)
@@ -61,9 +84,10 @@ class JobsController < ApplicationController
      { :title_cont => query_string }
    end
 
-end
+
 
 private
 def job_params
   params.require(:job).permit(:title,:description,:wage_upper_bound,:wage_lower_bound,:contact_email,:is_hidden)
+end
 end
