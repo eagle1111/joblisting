@@ -19,11 +19,21 @@
 @import "font-awesome";
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
+html {
+   position: relative;
+   min-height: 100%;
+ }
+
+ body {
+   /* Margin bottom by footer height */
+   margin-bottom: 100px;
+ }
+
 //---------Navbar---------
 
  .navbar-default {
-     background-color: #455A64;
-     border-color: #455A64;
+     background-color: #FFAB00;
+     border-color: #FFAB00;
 
 
      margin-bottom: 0;
@@ -31,27 +41,30 @@
  }
 
  .navbar-default .navbar-brand {
-     color: #FFAB00;
+     color: white;
      padding: 15px 20px;
      line-height: 30px;
      font-size: 25px;
- }
+ }//标题字体
 
  .navbar-default .navbar-brand:hover,
  .navbar-default .navbar-brand:focus {
-     color: #FFAB00;
+     color: black;//点击颜色
 
      background-color: transparent;
  }
 
  .navbar-default .navbar-nav > li > a {
-     color: #FFAB00;
+     color: white;
+     font-size: 10px;
+     padding: 15px 20px;
+     line-height: 30px;//登录退出颜色
 
  }
 
  .navbar-default .navbar-nav > li > a:hover,
  .navbar-default .navbar-nav > li > a:focus {
-     color: #FFAB00;
+     color: black;//点击颜色
 
      background-color: transparent;
  }
@@ -61,16 +74,16 @@
  .navbar-default .navbar-nav > .active > a:focus {
      color: #FFAB00;
 
-     background-color: #FFE0B2;
- }
+     background-color: #FFAB00;
+ }//下拉菜单标题背景颜色
 
  .navbar-default .navbar-nav > .open > a,
  .navbar-default .navbar-nav > .open > a:focus,
  .navbar-default .navbar-nav > .open > a:hover {
-     background-color: #FFE0B2;
+     background-color: #FFAB00;
      padding: 15px 20px;
-     font-size: 25px;
-     color: #FFAB00;
+     font-size: 10px;
+     color: white;
  }
 
 //---------Box---------
@@ -189,15 +202,19 @@
 
  //---------Footer---------
 
-  footer {
-      color: #FFAB00;
-  }
+ .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 100px;
+    background-color: #FFAB00;
 
-  footer .footer-below {
-      padding: 25px 0;
-      background-color: #455A64;
-  }
-
+    p {
+       color: white;
+      margin-top: 30px;
+    }
+}
 
   /****** LOGIN MODAL ******/
   .loginmodal-container {
