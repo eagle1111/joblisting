@@ -52,7 +52,7 @@ class JobsController < ApplicationController
 
   end
 
-  redirect_to jobs_path(@job)
+  redirect_to job_path(@job)
 end
 
 def quit
@@ -64,7 +64,7 @@ def quit
 
   end
 
-  redirect_to jobs_path(@job)
+  redirect_to job_path(@job)
 end
   def search
     if @query_string.present?
