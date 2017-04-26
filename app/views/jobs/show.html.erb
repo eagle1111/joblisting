@@ -1,14 +1,23 @@
-<div class="pull-right">
-  <% if  current_user.is_member_of?(@job) %>
-        <%= link_to("取消收藏", quit_job_path(@job), method: :post, class: "btn btn-default") %>
-  <% else %>
-        <%= link_to("收藏", join_job_path(@job), method: :post, class: "btn btn-default") %>
-  <% end %>
-</div>
-<h1><%=@job.title%></h1>
-<p>
-  <%=simple_format(@job.description)%>
-</p>
-<div class="text-center">
-  <%= link_to("投交履历", new_job_resume_path(@job), :style => "font-size: 30px; text-decoration: underline;") %>
+<div class="col-centered">
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading"> <h1><%=@job.title%></h1></div>
+    <div class="panel-body">
+      <div class="pull-right">
+        <% if  current_user.is_member_of?(@job) %>
+              <%= link_to("取消收藏", quit_job_path(@job), method: :post, class: "btn btn-default") %>
+        <% else %>
+              <%= link_to("收藏", join_job_path(@job), method: :post, class: "btn btn-default") %>
+        <% end %>
+      </div>
+
+      <p>
+        <%=simple_format(@job.description)%>
+      </p>
+      <div class="text-center">
+        <%= link_to("投交履历", new_job_resume_path(@job), :style => "font-size: 30px; text-decoration: underline;") %>
+      </div>
+    </div>
+  </div>
 </div>
