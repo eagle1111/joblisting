@@ -45,6 +45,11 @@
                     <%= job.created_at %>
                 </td>
                 <td>
+                  <% if current_user && current_user.is_member_of?(job) %>
+                   <i class="fa fa-bookmark"></i>
+                  <% else %>
+                   <i class="fa fa-bookmark-o"></i>
+                  <% end %>
 
                 </td>
             </tr>

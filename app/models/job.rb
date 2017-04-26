@@ -14,6 +14,6 @@ class Job < ApplicationRecord
   scope :published, -> { where(is_hidden: false) }
   scope :recent, -> { order('created_at DESC') }
   has_many :resumes
-  has_many :job_relationships
-  has_many :members, through: :job_relationships, source: :user
+  has_many :collects
+  has_many :members, through: :collects, source: :user
 end
