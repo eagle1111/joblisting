@@ -21,6 +21,10 @@
             <td>
                 刊登时间
             </td>
+            <td>
+              类别
+            </td>
+
         </tr>
     </thead>
 
@@ -48,6 +52,10 @@
         <td>
             <%= job.created_at %>
         </td>
+        <td>
+          <%= Category.find(job.category_id).name %>
+        </td>
+
     </tr>
     <% end %>
 </table>

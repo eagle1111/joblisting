@@ -1,0 +1,30 @@
+<div class="col-md-8 col-centered">
+<h1>Categories</h1>
+
+<table class="table table-boldered table-striped custab" >
+  <thead>
+  	<tr>
+    	<th>Name</th>
+    	<th>Desc</th>
+    	<th colspan="1"></th>
+  	</tr>
+  </thead>
+
+  <tbody>
+  	<% @categories.each do |category| %>
+    	<tr>
+      	<td><%= category.name %></td>
+      	<td><%= category.desc %></td>
+      	<td>
+          <%= link_to edit_category_path(category), class: "btn btn-xs btn-info" do %><i class="fa fa-pencil"></i><% end %>
+          <%= link_to category, method: :delete, :class => "btn btn-xs  btn-danger", :data => { :confirm => "Are you sure?" } do %><i class="fa fa-trash-o"></i><% end %>
+      </td>
+    	</tr>
+  	<% end %>
+  </tbody>
+  </table>
+<button class="btn btn-info"><%= link_to 'New Category', new_category_path %></button>
+</div>
+<div class="text-center">
+  <%= will_paginate @categories, renderer: BootstrapPagination::Rails %>
+</div>

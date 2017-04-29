@@ -1,0 +1,15 @@
+<div class="col-md-8 col-centered">
+
+
+<div class="panel panel-info">
+  <div class="panel-heading"><h1>New Category</h1></div>
+  <div class="panel-body">
+    <%= simple_form_for(@category) do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :name %>
+  	<%= f.input :desc %>
+    <%= f.submit "Submit", class: "btn btn-danger" %>|<%= link_to 'Back', categories_path %>
+  <% end %>
+  </div>
+</div>
+</div>

@@ -20,7 +20,7 @@
     </div>
     <div class="panel-body">
     <p>薪资：<%= job.wage_lower_bound %>~<%= job.wage_upper_bound %> ｜ 发布时间：  <%= job.created_at %> |
-      你已经有(<%= job.resumes.count %>)个竞争者
+      你已经有(<%= job.resumes.count %>)个竞争者 | <%= Category.find(job.category_id).name %>
 
     </p>
 

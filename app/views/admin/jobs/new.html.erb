@@ -11,6 +11,9 @@
   <%= f.input :wage_lower_bound, :label=>"薪资下限" %>
   <%= f.input :wage_upper_bound, :label=>"薪资上限" %>
   <%= f.input :contact_email %>
+   <div class="group">
+		 <%= select_tag(:category_id, options_for_select(@categories), :prompt => "类别") %>
+ </div>
   <%= f.input :is_hidden %>
   <%= f.submit "Submit", class: "btn btn-danger" %>
   <% end %>
