@@ -1,27 +1,62 @@
 
-<div class="col-md-8 col-centered">
-  <h2 class="text-center">我收藏的工作</h2>
-    <% @jobs.each do |job| %>
+<div class="col-md-10 col-centered">
 
+<div class="panel panel-info">
+  <div class="panel-heading"><h2 class="text-center">
+    我收藏的工作
+    <div class="dropdown clearfix pull-right">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        排序
+          <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+          <li>
+            <%= link_to("按照薪资下限排序", account_jobs_path(:order => "by_lower_bound")) %>
+          </li>
+          <li>
+              <%= link_to("按照薪资上限排序", account_jobs_path(:order => "by_upper_bound")) %>
 
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h4 class="text-center">
-            <%= link_to(job.title, job_path(job)) %>
+          </li>
+          <li>
+            <%= link_to("按照发表时间排序", account_jobs_path ) %>
 
-            </h4>
-        </div>
-        <div class="panel-body">
-        <p>薪资：<%= job.wage_lower_bound %>~<%= job.wage_upper_bound %> ｜ 发布时间：  <%= job.created_at %> |
-          你已经有(<%= job.resumes.count %>)个竞争者 | <%= Category.find(job.category_id).name %>
-
-        </p>
-
-        </div>
-      </div>
-
-    <% end %>
+          </li>
+      </ul>
   </div>
-  <div class="text-center">
-    <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+</h2>
+</div>
+  <div class="panel-body">
+    <table class="table table-boldered table-striped custab">
+        <thead>
+            <tr>
+                <td>
+                    职缺</td>
+                <td>薪资下限</td>
+                <td>薪资上限</td>
+                <td>刊登时间</td>
+            </tr>
+
+        </thead>
+        <tbody>
+            <% @jobs.each do |job| %>
+            <tr>
+                <td>
+                    <%= link_to(job.title, job_path(job)) %>
+                </td>
+                <td>
+                    <%= job.wage_lower_bound %>
+                </td>
+                <td>
+                    <%= job.wage_upper_bound %>
+                </td>
+                <td>
+                    <%= job.created_at %>
+                </td>
+            </tr>
+            <% end %>
+        </tbody>
+
+    </table>
   </div>
+</div>
+</div>
