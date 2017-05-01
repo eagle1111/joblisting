@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :join, :quit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :join, :quit, :is_hidden]
   before_action :validate_search_key, only: [:search]
   def show
     @job=Job.find(params[:id])
@@ -11,14 +11,16 @@ class JobsController < ApplicationController
   def index
     @jobs = case params[:order]
          when 'by_lower_bound'
-           Job.published.order('wage_lower_bound DESC')
+           Job.published.order('wage_lower_bound DESC').paginate(:page => params[:page], :per_page => 5)
+
          when 'by_upper_bound'
-           Job.published.order('wage_upper_bound DESC')
+           Job.published.order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 5)
+
          else
-           Job.published.recent
-         end
-    @jobs = Job.paginate(:page => params[:page], :per_page => 10)
+           Job.published.recent.paginate(:page => params[:page], :per_page => 5)
+
   end
+end
   def new
     @job=Job.new
   end
