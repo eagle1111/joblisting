@@ -1,0 +1,26 @@
+
+  <div class="col-md-6 col-centered">
+
+
+  <div class="panel panel-info">
+    <div class="panel-heading"><h1 class="text-center">City</h1></div>
+    <div class="panel-body">
+      <p>
+        <% Job.where(city_id: @city.id).each do |job| %>
+        	  <%= job.title %>
+      	<% end %>
+      	<p id="notice"><%= notice %></p>
+
+      	<p>
+        	  <strong>Name:</strong>
+          	<%= @city.name %>
+          </p>
+
+
+      	<%= link_to 'Edit', edit_city_path(@city), class: "btn btn-danger" %>
+       |
+      	<%= link_to 'Back', cities_path %>
+      </p>
+    </div>
+  </div>
+  </div>

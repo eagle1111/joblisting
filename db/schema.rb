@@ -10,11 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429051024) do
+ActiveRecord::Schema.define(version: 20170501084952) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.text     "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170429051024) do
     t.boolean  "is_hidden",        default: true
     t.string   "category_id"
     t.string   "—force"
+    t.integer  "city_id"
   end
 
   create_table "resumes", force: :cascade do |t|

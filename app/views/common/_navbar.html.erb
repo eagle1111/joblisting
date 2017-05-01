@@ -31,7 +31,7 @@
           <ul class="dropdown-menu">
             <%if current_user.admin?%>
             <li><%=link_to("Admin Panel",admin_jobs_path)%></li>
-            
+
             <%end%>
             <li><%= link_to("已收藏的工作", account_jobs_path) %></li>
             <li><%=link_to("退出",destroy_user_session_path,method: :delete)%></li>
@@ -39,10 +39,13 @@
         </li>
         <%end%>
       </ul>
-
-
   </div>
+
+
 </nav>
+
+
+
 
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
   <div class="modal-dialog" role="document">

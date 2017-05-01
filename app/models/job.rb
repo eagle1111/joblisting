@@ -17,4 +17,5 @@ class Job < ApplicationRecord
   has_many :collects
   has_many :members, through: :collects, source: :user
   belongs_to :category
+  belongs_to :city
 end

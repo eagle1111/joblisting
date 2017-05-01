@@ -1,0 +1,28 @@
+<div class="col-md-8 col-centered">
+<h1>Cities</h1>
+
+<table class="table table-boldered table-striped custab" >
+  <thead>
+  	<tr>
+    	<th>Name</th>
+    	<th colspan="1"></th>
+  	</tr>
+  </thead>
+
+  <tbody>
+  	<% @cities.each do |city| %>
+    	<tr>
+      	<td><%= city.name %></td>
+      	<td>
+          <%= link_to edit_city_path(city), class: "btn btn-xs btn-info" do %><i class="fa fa-pencil"></i><% end %>
+          <%= link_to city, method: :delete, :class => "btn btn-xs  btn-danger", :data => { :confirm => "Are you sure?" } do %><i class="fa fa-trash-o"></i><% end %>
+      </td>
+    	</tr>
+  	<% end %>
+  </tbody>
+  </table>
+<button class="btn btn-info"><%= link_to 'New City', new_city_path %></button>
+</div>
+<div class="text-center">
+  <%= will_paginate @cityies, renderer: BootstrapPagination::Rails %>
+</div>
