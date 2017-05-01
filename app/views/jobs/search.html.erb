@@ -7,20 +7,34 @@
     </div>
   </div>
   <% else %>
-  <div class="col-md-10 col-md-offset-1">
 
+  <div class="col-md-4 col-centered">
   <% @jobs.each do |job| %>
-  <div class="col-md-9 job-box">
-  <h3><%= link_to(job.title, job_path(job), target: "_blank" )%></h3>
-  <p>发表时间：<%= job.created_at.strftime("%Y-%m-%d") %></p>
-  <p>工资：<%= job.wage_lower_bound %>  ~ <%= job.wage_upper_bound %> </p>
-  </div>
-  <% end %>
-</div>
-  <div class="col-md-10 col-md-offset-1 job-bottom">
-    <div class="text-center">
-      <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="text-center">
+          <%= link_to(render_highlight_content(job, @query_string), job_path(job)) %>
+          <div class="pull-right">
+            <% if current_user && current_user.is_member_of?(job) %>
+             <i class="fa fa-bookmark"></i>
+            <% else %>
+             <i class="fa fa-bookmark-o"></i>
+            <% end %>
+          </div>
+          </h4>
+      </div>
+      <div class="panel-body">
+        <p><i class="fa fa-jpy" aria-hidden="true"></i><%= job.wage_lower_bound %>~<%= job.wage_upper_bound %> |
+           <i class="fa fa-clock-o" aria-hidden="true"></i>  <%= job.created_at %></p>
+        <p><i class="fa fa-location-arrow" aria-hidden="true"></i> <%= City.find(job.city_id).name %> |
+           <i class="fa fa-tags" aria-hidden="true"></i> <%= Category.find(job.category_id).name %> |
+           <i class="fa fa-building" aria-hidden="true"></i><%= job.company %></p>
+        <p><i class="fa fa-hand-rock-o" aria-hidden="true"></i>你已经有(<%= job.resumes.count %>)个竞争者 </p>
+      </div>
     </div>
-  </div>
 
   <% end %>
+  </div>
+<% end %>

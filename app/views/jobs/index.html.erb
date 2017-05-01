@@ -1,7 +1,9 @@
 <div class="col-md-4">
 
 </div>
+
 <div class="col-md-4 ">
+
 <% @jobs.each do |job| %>
 
 
@@ -19,19 +21,18 @@
         </h4>
     </div>
     <div class="panel-body">
-    <p><i class="fa fa-jpy" aria-hidden="true"></i><%= job.wage_lower_bound %>~<%= job.wage_upper_bound %></p>
-    <p> <i class="fa fa-clock-o" aria-hidden="true"></i>  <%= job.created_at %> </p>
-    <p><i class="fa fa-hand-rock-o" aria-hidden="true"></i>你已经有(<%= job.resumes.count %>)个竞争者 </p>
-    <p><i class="fa fa-tags" aria-hidden="true"></i> <%= Category.find(job.category_id).name %></p>
-    <p><i class="fa fa-location-arrow" aria-hidden="true"></i> <%= City.find(job.city_id).name %></p>
-    </p>
-
+      <p><i class="fa fa-jpy" aria-hidden="true"></i><%= job.wage_lower_bound %>~<%= job.wage_upper_bound %> |
+         <i class="fa fa-clock-o" aria-hidden="true"></i>  <%= job.created_at %></p>
+      <p><i class="fa fa-location-arrow" aria-hidden="true"></i> <%= City.find(job.city_id).name %> |
+         <i class="fa fa-tags" aria-hidden="true"></i> <%= Category.find(job.category_id).name %> |
+         <i class="fa fa-building" aria-hidden="true"></i><%= job.company %></p>
+      <p><i class="fa fa-hand-rock-o" aria-hidden="true"></i>你已经有(<%= job.resumes.count %>)个竞争者 </p>
     </div>
   </div>
 
 <% end %>
-</div>
 
+</div>
 <div class="col-md-2 pull-right">
 
 <div class="dropdown clearfix ">

@@ -3,17 +3,20 @@ class JobsController < ApplicationController
   before_action :validate_search_key, only: [:search]
   def show
     @job=Job.find(params[:id])
-
+    if @job.is_hidden
+          flash[:warning] = "This Job already archived"
+          redirect_to root_path
+        end
   end
   def index
     @jobs = case params[:order]
-            when 'by_lower_bound'
-              Job.published.order('wage_lower_bound DESC')
-            when 'by_upper_bound'
-              Job.published.order('wage_upper_bound DESC')
-            else
-              Job.published.recent
-            end
+         when 'by_lower_bound'
+           Job.published.order('wage_lower_bound DESC')
+         when 'by_upper_bound'
+           Job.published.order('wage_upper_bound DESC')
+         else
+           Job.published.recent
+         end
     @jobs = Job.paginate(:page => params[:page], :per_page => 10)
   end
   def new
@@ -74,15 +77,14 @@ end
   end
   protected
 
-   def validate_search_key
-     @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
-     @search_criteria = search_criteria(@query_string)
-   end
+  def validate_search_key
+    @query_string = params[:q].gsub(/\\|\'|\/|\?/, "") if params[:q].present?
+    @search_criteria = search_criteria(@query_string)
+  end
 
-
-   def search_criteria(query_string)
-     { :title_cont => query_string }
-   end
+  def search_criteria(query_string)
+    { :title_cont => query_string }
+  end
 
 
 

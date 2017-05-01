@@ -1,24 +1,53 @@
+<div class="col-md-4">
 
-<div class="col-md-8 col-centered">
-  <h2 class="text-center">我收藏的工作</h2>
-    <% @jobs.each do |job| %>
+</div>
+<div class="col-md-4 ">
+<% @jobs.each do |job| %>
 
 
-      <div class="panel panel-info">
-        <div class="panel-heading">
-          <h4 class="text-center">
-            <%= link_to(job.title, job_path(job)) %>
-
-            </h4>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h4 class="text-center">
+        <%= link_to(job.title, job_path(job)) %>
+        <div class="pull-right">
+          <% if current_user && current_user.is_member_of?(job) %>
+           <i class="fa fa-bookmark"></i>
+          <% else %>
+           <i class="fa fa-bookmark-o"></i>
+          <% end %>
         </div>
-        <div class="panel-body">
-        <p>薪资：<%= job.wage_lower_bound %>~<%= job.wage_upper_bound %> ｜ 发布时间：  <%= job.created_at %> |
-          你已经有(<%= job.resumes.count %>)个竞争者 | <%= Category.find(job.category_id).name %>
-
-        </p>
-
-        </div>
-      </div>
-
-    <% end %>
+        </h4>
+    </div>
+    <div class="panel-body">
+      <p><i class="fa fa-jpy" aria-hidden="true"></i><%= job.wage_lower_bound %>~<%= job.wage_upper_bound %> |
+         <i class="fa fa-clock-o" aria-hidden="true"></i>  <%= job.created_at %></p>
+      <p><i class="fa fa-location-arrow" aria-hidden="true"></i> <%= City.find(job.city_id).name %> |
+         <i class="fa fa-tags" aria-hidden="true"></i> <%= Category.find(job.category_id).name %> |
+         <i class="fa fa-building" aria-hidden="true"></i><%= job.company %></p>
+      <p><i class="fa fa-hand-rock-o" aria-hidden="true"></i>你已经有(<%= job.resumes.count %>)个竞争者 </p>
+    </div>
   </div>
+
+<% end %>
+</div>
+
+<div class="col-md-2 pull-right">
+
+<div class="dropdown clearfix ">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  排序
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+    <li>
+      <%= link_to("按照薪资下限排序", jobs_path(:order => "by_lower_bound")) %>
+    </li>
+    <li>
+        <%= link_to("按照薪资上限排序", jobs_path(:order => "by_upper_bound")) %>
+    </li>
+    <li>
+      <%= link_to("按照发表时间排序", jobs_path ) %>
+    </li>
+  </ul>
+</div>
+</div>
