@@ -16,13 +16,7 @@
       <div class="panel-heading">
         <h4 class="text-center">
           <%= link_to(render_highlight_content(job, @query_string), job_path(job)) %>
-          <div class="pull-right">
-            <% if current_user && current_user.is_member_of?(job) %>
-             <i class="fa fa-bookmark"></i>
-            <% else %>
-             <i class="fa fa-bookmark-o"></i>
-            <% end %>
-          </div>
+
           </h4>
       </div>
       <div class="panel-body">

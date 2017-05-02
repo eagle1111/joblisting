@@ -1,6 +1,7 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :join, :quit, :is_hidden]
   before_action :validate_search_key, only: [:search]
+  before_action :validate_city_key, only: [:city]
   def show
     @job=Job.find(params[:id])
     if @job.is_hidden
@@ -15,12 +16,12 @@ class JobsController < ApplicationController
 
          when 'by_upper_bound'
            Job.published.order('wage_upper_bound DESC').paginate(:page => params[:page], :per_page => 5)
-
          else
            Job.published.recent.paginate(:page => params[:page], :per_page => 5)
 
   end
 end
+
   def new
     @job=Job.new
   end
@@ -77,6 +78,12 @@ end
       @jobs = search_result.paginate(:page => params[:page], :per_page => 5 )
     end
   end
+  def city
+     if @cuery_string.present?
+       city_result = Job.published.ransack(@city_criteria).result(:distinct => true)
+       @jobs = city_result.paginate(:page => params[:page], :per_page => 6 )
+     end
+   end
   protected
 
   def validate_search_key
@@ -87,11 +94,18 @@ end
   def search_criteria(query_string)
     { :title_cont => query_string }
   end
+     def validate_city_key
+       @query_string = params[:c].gsub(/\\|\'|\/|\?/, "") if params[:c].present?
+       @city_criteria = city_criteria(@cuery_string)
+     end
 
+    def city_criteria(cuery_string)
+      { :title_cont => cuery_string}
+    end
 
 
 private
 def job_params
-  params.require(:job).permit(:title,:description,:wage_upper_bound,:wage_lower_bound,:contact_email,:is_hidden)
+  params.require(:job).permit(:title,:description,:wage_upper_bound,:wage_lower_bound,:contact_email,:is_hidden, :category_id, :city_name, :company)
 end
 end
