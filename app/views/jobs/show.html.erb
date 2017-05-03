@@ -22,8 +22,11 @@
     </h1>
   </div>
     <div class="panel-body">
+      <p><i class="fa fa-jpy" aria-hidden="true"></i><%= @job.wage_lower_bound %>~<%= @job.wage_upper_bound %> |
+         <i class="fa fa-clock-o" aria-hidden="true"></i>  <%= @job.created_at %>|
+         <i class="fa fa-building" aria-hidden="true"></i><%= @job.company %> | 
+       </p>
       <p>
-        <%=simple_format(@job.company)%>
         <%=simple_format(@job.description)%>
       </p>
     </div>

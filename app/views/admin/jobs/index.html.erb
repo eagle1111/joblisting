@@ -24,7 +24,9 @@
             <td>
               类别
             </td>
-
+            <td>
+              城市
+            </td>
         </tr>
     </thead>
 
@@ -54,6 +56,9 @@
         </td>
         <td>
           <%= Category.find(job.category_id).name %>
+        </td>
+        <td>
+          <%= City.find(job.city_id).name %>
         </td>
 
     </tr>
