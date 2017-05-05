@@ -9,7 +9,11 @@
   </head>
 
   <body>
-    <div class="container-fluid">
+
+    <div class="container-fluid" style="padding: 0px;">
+
+
+
       <div class="row">
       <%=render "common/navbar"%>
       <%=render "common/flashes"%>
@@ -26,8 +30,10 @@
         <div class="col-md-10">
           <%= yield %>
         </div>
-      </div>
-    </div>
+       </div>
+     </div>
+
     <%=render "common/footer"%>
+
   </body>
 </html>

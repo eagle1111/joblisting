@@ -27,6 +27,10 @@ html {
  body {
    /* Margin bottom by footer height */
    margin-bottom: 100px;
+   background-color: #E1F5FE;
+   background-size: cover;
+   background-attachment:fixed;
+   background-repeat:no-repeat;
  }
 
 //---------Navbar---------
@@ -688,5 +692,11 @@ html {
     .indicators-line > .carousel-indicators{
         display: none;
     }
+
+}
+//-------------background----------
+.back{
+
+
 
 }
